@@ -39,8 +39,8 @@ const camera = () => {
     
         const canvas = document.createElement('canvas');
         canvas.style = 'display: none';
-        canvas.width = 1080;
-        canvas.height = 1080;
+        canvas.width = screen.width;
+        canvas.height = screen.height;
         document.body.appendChild(canvas);
         // Grab canvas context
         const ctx = canvas.getContext('2d');
