@@ -7,7 +7,7 @@ OT="  \e[1m[\e[5m\a*\e[0;m\e[1m]"
 chsys(){ if [[ $(uname -o) == 'Android' ]];then printf "\e[0;m\n$OT This is not supported in Termux \n\e[0;m\n";exit; fi }
 chroot(){ if [[ $USER != 'root' ]];then printf "\e[0;m\n$OT Please run this file with higher access\n\n -> ( permission denied )\n\e[0;m\n";exit; fi }
 TryExcept(){ if [[ $? != 0 ]];then $1 ; fi }
-ERR(){ printf "\r\n$OT Error\n\n\e[0;m"; exit; }
+ERR(){ printf "\r\n$OT Error\n\n\e[0;m"; }
 
 install_ruby () {
   echo -en "\e[0;m\r$OT Installing Ruby . . . ";sleep 1.273
@@ -54,7 +54,10 @@ main () {
   check_php
   echo -en "\e[0;m\r$OT Check and Install Ruby-Sqlite3 . . . ";sleep .9834
   apt install ruby-sqlite3 > /dev/null 2>&1
-  TryExcept ERR
+  pacman -S ruby-sqlite3 > /dev/null 2>&1
+  dnf install ruby-sqlite3 > /dev/null 2>&1
+  brew install ruby-sqlite3 > /dev/null 2>&1
+
   echo -en "\e[0;m\r$OT Check Install Bundler . . .          ";sleep .9834
   check_bundler
   echo -en "\e[0;m\r$OT Bundling Gems . . .                  ";sleep .9834
