@@ -8,7 +8,7 @@ A tool for collecting data and access camera, microphone and location and clipbo
 
 ## Clone from GitHub
 ```bash
-git clone https://github.com/MSFPT/Snow
+git clone https://github.com/msfpt/Snow
 ```
 <br>
 

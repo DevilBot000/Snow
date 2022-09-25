@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-" Snow : https://github.com/MSFPT/Snow "
+" Snow : https://github.com/msfpt/Snow "
 
 require 'ngrok/tunnel';
 require 'io/console';
@@ -233,8 +233,7 @@ class App
     self.setting
   end
   def help
-    puts "  Read at https://github.com/MSFPT/Snow#readme\n\n"
-    @prompt.ask(' Enter = back')
+    puts "  Read at https://github.com/msfpt/Snow#readme\n\n"
     self.options_main
   end
 end
@@ -243,9 +242,9 @@ begin
   Snow = App. new
   opt = (ARGV.size > 0) ? ARGV[0].downcase : nil
   Snow.run opt
-rescue Interrupt => e
+rescue Interrupt => error
   puts "\r\n\n";
   exit true
-rescue Exception => e
-  puts e
+rescue Exception => error
+  puts error
 end

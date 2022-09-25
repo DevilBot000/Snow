@@ -1,8 +1,6 @@
 <?php
 
-  /*
-   * https://github.com/MSFPT/Snow
-   */
+  /* Coded By https://github.com/msfpt */
 
   $full_url = "$_SERVER[HTTP_X_FORWARDED_PROTO]://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 

